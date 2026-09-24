@@ -23,19 +23,16 @@
   --radius: 8px; /* Default border radius */
 }
 
-/* * universal selector: reset margin/padding, box-sizing:border-box makes width include padding/border (easier layout) */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* html smooth scroll: makes anchor links (#home) animate instead of jump */
 html {
   scroll-behavior: smooth;
 }
 
-/* body base styles: font, background, text color, hide horizontal scroll, antialiased for crisp text */
 body {
   font-family:
     "IBM Plex Sans", system-ui, sans-serif; /* Figma body font + system fallback */
@@ -45,135 +42,157 @@ body {
   -webkit-font-smoothing: antialiased; /* makes fonts smoother on Mac  vender prefixes*/
 }
 
-/* img: block removes inline gap, max-width makes images responsive */
 img {
   display: block;
   max-width: 100%;
 }
 
-/* a: inherit color from parent, remove underline */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* .container: central wrapper 1280px, centered with auto margins, calc(100% -160px) = 80px side gutters as Figma */
-/* ============================================================
-   HEADER
-   Figma: 1280px × 60px
-   Position: x=80px, y=30px
-   ============================================================ */
-
-.header {
+.navbar {
   position: fixed;
+
   top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 200px;
 
-  width: min(1280px, calc(100% - 160px));
-  height: 60px;
-
-  background: #151b20;
-  border-radius: 6px;
-
-  z-index: 1000;
+  width: 74;
+  height: 69px;
 
   display: flex;
   align-items: center;
 
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  background: rgba(21, 27, 32, 1);
+  backdrop-filter: blur(4px);
+
+  padding-left: 40px;
+
+  transition: all 0.3s ease;
 }
 
-.header_inner {
-  width: 100%;
-  height: 100%;
-
-  padding: 0 25px;
-
+.logo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
 
+  gap: 8px;
 
-/* ============================================================
-   LOGO
-   ============================================================ */
+  width: 34%;
 
-.header_logo {
-  display: flex;
-  align-items: center;
   flex-shrink: 0;
+
+  white-space: nowrap;
 }
 
-.header_logo img {
-  width: 210px;
-  height: 22px;
-  object-fit: contain;
+.teknic {
+  color: rgba(255, 255, 255, 0.3);
+
+  font-size: 18px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
 }
 
+.euchner {
+  color: white;
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
-
-.header_nav {
-  height: 100%;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.header_nav ul {
-  height: 100%;
-
+.nav-links {
   display: flex;
   align-items: center;
+  justify-content: center;
 
+  gap: 30px;
+
+  flex: 1;
+
+  min-width: 0;
+}
+li {
   list-style: none;
 }
-
-.header_nav ul li {
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-}
-
-.nav_link {
-  position: relative;
-
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 10px;
-
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1;
-
-  color: #ffffff;
+.nav-links a {
+  color: white;
   text-decoration: none;
 
+  font-size: 13px;
+  font-weight: 500;
+
+  height: 70px;
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+
+  transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: red;
+  width: 121.2%;
+}
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 14px 24px;
+}
+
+.about-btn .arrow {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.25s ease;
+}
+
+.about-btn:hover .arrow {
+  transform: rotate(90deg);
+}
+
+.contact-btn {
+  flex-shrink: 0;
+
+  width: 170px;
+  height: 70px;
+
+  margin-left: 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: red;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 1px;
   transition:
     background 0.2s ease,
-    color 0.2s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%
+  );
 }
-
-/* Normal navigation hover */
-.nav_link:not(.nav_last):hover {
-  background: #e60000;
-}
-
-/* Active HOME */
-.nav_link.is-active {
-  color: #ffffff;
-}
-
-
-/* ============================================================
-   GET IN TOUCH
-   ============================================================ */
 
 .nav_link.nav_last {
   height: 60px;
@@ -191,9 +210,6 @@ a {
 
   border-radius: 0 6px 6px 0;
 
-  /*
-    Folded bottom-right corner
-  */
   clip-path: polygon(
     0 0,
     100% 0,
@@ -211,47 +227,6 @@ a {
   background: #c00000;
 }
 
-
-/* ============================================================
-   BURGER
-   ============================================================ */
-
-.header__burger {
-  display: none;
-
-  width: 32px;
-  height: 32px;
-
-  padding: 0;
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-
-  background: transparent;
-  border: 0;
-
-  cursor: pointer;
-}
-
-.header__burger span {
-  display: block;
-
-  width: 22px;
-  height: 2px;
-
-  background: #ffffff;
-
-  border-radius: 2px;
-}
-
-
-/* ============================================================
-   HERO
-   Figma: 1440 × 810
-   ============================================================ */
-
 .hero {
   position: relative;
 
@@ -262,11 +237,6 @@ a {
 
   background: #000000;
 }
-
-
-/* ============================================================
-   HERO VIDEO
-   ============================================================ */
 
 .hero__media {
   position: absolute;
@@ -284,34 +254,19 @@ a {
   z-index: 0;
 }
 
-
-/* ============================================================
-   HERO OVERLAY
-   ============================================================ */
-
 .hero__overlay {
   position: absolute;
 
   inset: 0;
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.15) 0%,
-      rgba(0, 0, 0, 0.45) 100%
-    );
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
 
   z-index: 1;
 }
-
-
-/* ============================================================
-   HERO CONTENT
-   Figma content:
-   x = 80px
-   y = 480px
-   width = 1280px
-   ============================================================ */
 
 .hero__content {
   position: absolute;
@@ -330,20 +285,10 @@ a {
   z-index: 2;
 }
 
-
-/* ============================================================
-   HERO LEFT
-   ============================================================ */
-
 .hero__left {
   width: 587px;
   flex-shrink: 0;
 }
-
-
-/* ============================================================
-   HERO TITLE
-   ============================================================ */
 
 .hero__title {
   width: 587px;
@@ -361,11 +306,6 @@ a {
   color: #ffffff;
 }
 
-
-/* ============================================================
-   HERO SUBTITLE
-   ============================================================ */
-
 .hero__subtitle {
   width: 587px;
 
@@ -381,11 +321,6 @@ a {
   opacity: 0.92;
 }
 
-
-/* ============================================================
-   HERO BUTTON GROUP
-   ============================================================ */
-
 .hero__ctas {
   display: flex;
   align-items: center;
@@ -394,11 +329,6 @@ a {
 
   margin-top: 20px;
 }
-
-
-/* ============================================================
-   BASE BUTTON
-   ============================================================ */
 
 .btn {
   position: relative;
@@ -419,7 +349,7 @@ a {
 
   line-height: 1;
   letter-spacing: 0.02em;
-
+  text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
 
@@ -448,7 +378,6 @@ a {
   z-index: 2;
 }
 
-
 /* ============================================================
    RED BUTTON
    ============================================================ */
@@ -465,7 +394,6 @@ a {
   border-color: #c00000;
 }
 
-
 /* ============================================================
    GHOST BUTTON
    ============================================================ */
@@ -476,14 +404,43 @@ a {
 
   border-color: rgba(255, 255, 255, 0.75);
 }
+.expert-btn {
+  width: 250px;
+  height: 60px;
+  position: relative;
 
-.btn--ghost:hover {
-  background: #ffffff;
-  color: #0f0f0f;
+  background: transparent;
+  border: none;
 
-  border-color: #ffffff;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
+.expert-btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.expert-btn path {
+  fill: none;
+  stroke: white;
+  stroke-width: 1;
+}
+
+.expert-btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  white-space: nowrap;
+}
 
 /* ============================================================
    LARGE BUTTON
@@ -495,7 +452,6 @@ a {
   padding: 0 24px;
 }
 
-
 /* ============================================================
    HERO RIGHT
    ============================================================ */
@@ -505,7 +461,6 @@ a {
 
   flex-shrink: 0;
 }
-
 
 /* ============================================================
    HERO LINE
@@ -517,7 +472,6 @@ a {
 
   background: rgba(255, 255, 255, 0.9);
 }
-
 
 /* ============================================================
    HERO CLAIM
@@ -536,7 +490,7 @@ a {
   color: rgba(255, 255, 255, 0.92);
 }
 
- /* move diagonal on hover */
+/* move diagonal on hover */
 
 /* ================= INTRO (1:165) ================= */
 .intro {
@@ -692,7 +646,8 @@ a {
   font-size: 16px;
   line-height: 22px;
   color: #aeb5bc;
-}.products {
+}
+.products {
   width: 100%;
 
   background: var(--page-bg);
@@ -740,7 +695,6 @@ a {
   max-width: 628px;
 }
 
-
 /* =========================================================
    PRODUCT GRID
 ========================================================= */
@@ -754,7 +708,6 @@ a {
 
   gap: 24px;
 }
-
 
 /* =========================================================
    PRODUCT CARD
@@ -792,7 +745,6 @@ a {
   min-height: 44px;
 }
 
-
 /* =========================================================
    PRODUCT IMAGE
 ========================================================= */
@@ -809,7 +761,6 @@ a {
   border-radius: 8px;
 
   overflow: hidden;
-
 }
 
 .product-card__image img {
@@ -851,7 +802,6 @@ a {
 
   z-index: 2;
 }
-
 
 /* =========================================================
    PRODUCT TEXT
@@ -913,7 +863,7 @@ a {
 .product-card__image {
   --corner: 18px;
   --thick: 2px;
-  --color: #E30613;
+  --color: #e30613;
 }
 
 .product-card__image::before,
@@ -966,7 +916,6 @@ a {
   border-left: var(--thick) solid var(--color);
 }
 
-
 .why {
   background: #0d0d0d;
   padding: 80px 0;
@@ -1005,7 +954,9 @@ a {
   position: relative;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .why__card.reveal {
@@ -1082,13 +1033,13 @@ a {
   flex: 1 1 420px;
 }
 
-.machine_intro{
+.machine_intro {
   flex: 1 1 320px;
   max-width: 420px;
 }
 
-.machine_intro .intro-rule{
-  padding-right: 30px;;
+.machine_intro .intro-rule {
+  padding-right: 30px;
 }
 .machine_intro p {
   font-size: 0.95rem;
@@ -1136,8 +1087,7 @@ a {
   padding-right: 80px;
   padding-bottom: 60px;
   padding-left: 80px;
-  background-color: var(--white);
-  
+  background-color: var(--black);
 }
 
 .hero-header {
@@ -1146,16 +1096,14 @@ a {
   display: flex;
   justify-content: space-between;
   opacity: 1;
-  color: var(--black);
+  color: var(--white);
 }
 
 .title {
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   font-weight: 700;
   font-style: Bold;
   font-size: 40.33px;
-  
-
 }
 
 .german_intro {
@@ -1172,11 +1120,10 @@ a {
 }
 
 .german_intro p {
-  font-family: 'IBM Plex Sans';
+  font-family: "IBM Plex Sans";
   font-weight: 400;
   font-style: Regular;
   font-size: 16px;
-  
 }
 
 .german_intro p:last-child {
@@ -1184,20 +1131,33 @@ a {
 }
 
 .hero-image {
-  width: 1280px;
+  position: relative;
+  width: 100%;
   height: 500px;
-  aspect-ratio: 16 / 8.4;
+  margin-top: 10px;
+  margin-bottom: 40px;
   overflow: hidden;
   background: #2a2a2a;
-  margin-bottom: 40px;
-  margin-top: 10px;
 }
-
-.hero-image img {
+.hero-image .slideshow {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.hero-image .slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.hero-image .slide-image.active {
+  opacity: 1;
 }
 
 /*Quality*/
@@ -1220,7 +1180,7 @@ a {
   border-radius: 4px;
 }
 
-#quality .content a{
+#quality .content a {
   margin-top: 20px;
 }
 .content {
@@ -1230,7 +1190,6 @@ a {
   left: 733px;
   opacity: 1;
   gap: 40px;
-
 }
 
 h1 {
@@ -1239,8 +1198,6 @@ h1 {
   font-style: Bold;
   font-size: 40.33px;
 }
-
-
 
 p {
   font-family: IBM Plex Sans;
@@ -1263,7 +1220,7 @@ p {
   gap: 10px;
   padding: 16px;
 }
-#german a{
+#german a {
   padding: 16px 16px 10px;
   margin-left: 550px;
 }
@@ -1288,7 +1245,7 @@ p {
 #find .about_line.divider {
   width: 64px;
   height: 3px;
-  background: #E30613;
+  background: #e30613;
   margin: 0 auto 24px;
   border: none;
 }
@@ -1324,12 +1281,12 @@ p {
   transition: all 0.2s ease;
 }
 
-#find .intro-rule{
-  margin-left: 607px;;
+#find .intro-rule {
+  margin-left: 607px;
 }
 /* solid red button, folded-corner ribbon look like "VIEW OUR QUALITY POLICY" */
 #find .btn--red {
-  background: #E30613;
+  background: #e30613;
   color: #ffffff;
   clip-path: polygon(0 0, 100% 0, 100% 75%, 92% 100%, 0 100%);
 }
@@ -1344,63 +1301,50 @@ p {
 
 /* outlined ghost button for the secondary CTA */
 #find .btn--ghost {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 16px 32px;
+  padding: 16px 32px;
 
-    font-family: "JetBrains Mono", monospace;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    text-transform: uppercase;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  text-transform: uppercase;
 
-    color: #ffffff;
-    background: transparent;
+  color: #ffffff;
+  background: transparent;
 
-    border: none;
+  border: none;
 
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 75%,
-        92% 100%,
-        0 100%
-    );
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 92% 100%, 0 100%);
 
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 /* Border */
 #find .btn--ghost::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+  content: "";
+  position: absolute;
+  inset: 0;
 
-    border: 1px solid #ffffff;
+  border: 1px solid #ffffff;
 
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 75%,
-        92% 100%,
-        0 100%
-    );
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 92% 100%, 0 100%);
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /* Hover */
 #find .btn--ghost:hover {
-    background: #ffffff;
-    color: #111111;
+  background: #ffffff;
+  color: #111111;
 }
-#quality .media{
-margin-bottom: 30px;
-
+#quality .media {
+  margin-bottom: 30px;
 }
 /* =========================================================
    FOOTER VARIABLES
@@ -1415,7 +1359,6 @@ margin-bottom: 30px;
   --footer-column-border: #20262b;
 }
 
-
 /* =========================================================
    COMMON CONTAINER
 ========================================================= */
@@ -1426,12 +1369,9 @@ margin-bottom: 30px;
   margin: 0 auto;
 }
 
-
 /* =========================================================
    FOOTER TOP
 ========================================================= */
-
-
 
 /* =========================================================
    FOOTER TOP — FIGMA MATCH
@@ -1444,7 +1384,6 @@ margin-bottom: 30px;
   overflow: hidden;
 }
 
-
 /* =========================================================
    CONTAINER
 ========================================================= */
@@ -1455,7 +1394,6 @@ margin-bottom: 30px;
   height: 100%;
   margin: 0 auto;
 }
-
 
 /* =========================================================
    TWO COLUMN LAYOUT
@@ -1470,7 +1408,6 @@ margin-bottom: 30px;
 
   height: 100%;
 }
-
 
 /* =========================================================
    LEFT DECORATIVE BORDER
@@ -1495,7 +1432,6 @@ margin-bottom: 30px;
   pointer-events: none;
 }
 
-
 /* =========================================================
    RIGHT DECORATIVE BORDER
 ========================================================= */
@@ -1519,7 +1455,6 @@ margin-bottom: 30px;
   pointer-events: none;
 }
 
-
 /* =========================================================
    LEFT CONTENT
 ========================================================= */
@@ -1527,7 +1462,6 @@ margin-bottom: 30px;
 .footer-top__left {
   padding-top: 51px;
 }
-
 
 /* Heading */
 
@@ -1549,7 +1483,6 @@ margin-bottom: 30px;
   letter-spacing: -0.7px;
 }
 
-
 /*
    Your HTML contains another button on the left.
    It is NOT visible in the Figma screenshot,
@@ -1559,7 +1492,6 @@ margin-bottom: 30px;
 .footer-top__left .btn {
   display: none;
 }
-
 
 /* =========================================================
    RIGHT CONTENT
@@ -1572,7 +1504,6 @@ margin-bottom: 30px;
   width: 405px;
 }
 
-
 /* Red horizontal line */
 
 .footer-top__right .intro__line {
@@ -1583,7 +1514,6 @@ margin-bottom: 30px;
 
   background: #e60000;
 }
-
 
 /* Description */
 
@@ -1599,7 +1529,6 @@ margin-bottom: 30px;
 
   line-height: 1.45;
 }
-
 
 /* =========================================================
    FIND A DEALER BUTTON
@@ -1640,26 +1569,18 @@ margin-bottom: 30px;
      on bottom-right corner.
   */
 
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 72%,
-    91% 100%,
-    0 100%
-  );
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 91% 100%, 0 100%);
 
   cursor: pointer;
 
   transition: transform 0.2s ease;
 }
 
-
 /* Hover */
 
 .footer-top__right .btn--dark:hover {
   transform: translateY(-2px);
 }
-
 
 /* Hide arrow from your current HTML */
 
@@ -1680,7 +1601,6 @@ margin-bottom: 30px;
 
   padding-top: 35px;
 }
-
 
 /* =========================================================
    FOOTER GRID
@@ -1703,7 +1623,6 @@ margin-bottom: 30px;
   min-height: 223px;
 }
 
-
 /* =========================================================
    BRAND COLUMN
 ========================================================= */
@@ -1711,7 +1630,6 @@ margin-bottom: 30px;
 .footer__brand {
   padding-right: 40px;
 }
-
 
 /* Screenshot:
    SENSE. SWITCH. CONTROL. PROTECT.
@@ -1733,7 +1651,6 @@ margin-bottom: 30px;
   text-transform: uppercase;
 }
 
-
 /* Company name */
 
 .footer__brand h3 {
@@ -1748,7 +1665,6 @@ margin-bottom: 30px;
 
   line-height: 1;
 }
-
 
 /*
    Make "Teknic" red.
@@ -1765,7 +1681,6 @@ margin-bottom: 30px;
   color: var(--footer-red);
 }
 
-
 /* Description */
 
 .footer__sub {
@@ -1781,7 +1696,6 @@ margin-bottom: 30px;
   line-height: 1.4;
 }
 
-
 /* =========================================================
    OTHER FOOTER COLUMNS
 ========================================================= */
@@ -1791,7 +1705,6 @@ margin-bottom: 30px;
 
   padding-left: 61px;
 }
-
 
 /*
    Vertical separator
@@ -1815,7 +1728,6 @@ margin-bottom: 30px;
 
   background: var(--footer-column-border);
 }
-
 
 /* =========================================================
    FOOTER LABEL
@@ -1842,7 +1754,6 @@ margin-bottom: 30px;
   text-transform: uppercase;
 }
 
-
 /* Red line above heading */
 
 .footer__line {
@@ -1857,7 +1768,6 @@ margin-bottom: 30px;
   background: var(--footer-red);
 }
 
-
 /*
    Push label below red line
 */
@@ -1865,7 +1775,6 @@ margin-bottom: 30px;
 .footer__label {
   padding-top: 24px;
 }
-
 
 /* =========================================================
    QUICK LINKS
@@ -1878,7 +1787,6 @@ margin-bottom: 30px;
 
   gap: 7px;
 }
-
 
 .footer__nav a {
   color: #ffffff;
@@ -1897,11 +1805,9 @@ margin-bottom: 30px;
   transition: color 0.2s ease;
 }
 
-
 .footer__nav a:hover {
   color: var(--footer-red);
 }
-
 
 /* =========================================================
    CONTACT
@@ -1914,7 +1820,6 @@ margin-bottom: 30px;
 
   gap: 10px;
 }
-
 
 .footer__contact p {
   max-width: 280px;
@@ -1931,7 +1836,6 @@ margin-bottom: 30px;
   line-height: 1.4;
 }
 
-
 .footer__contact a {
   color: #ffffff;
 
@@ -1946,11 +1850,9 @@ margin-bottom: 30px;
   transition: color 0.2s ease;
 }
 
-
 .footer__contact a:hover {
   color: var(--footer-red);
 }
-
 
 /* =========================================================
    SOCIAL
@@ -1963,7 +1865,6 @@ margin-bottom: 30px;
 
   margin-top: 8px;
 }
-
 
 .social-btn {
   width: 40px;
@@ -1985,13 +1886,11 @@ margin-bottom: 30px;
     transform 0.2s ease;
 }
 
-
 .social-btn:hover {
   background: var(--footer-red);
 
   transform: translateY(-2px);
 }
-
 
 .social-btn svg {
   width: 18px;
@@ -1999,7 +1898,6 @@ margin-bottom: 30px;
 
   display: block;
 }
-
 
 /* =========================================================
    FOOTER BOTTOM
@@ -2013,7 +1911,6 @@ margin-bottom: 30px;
   height: 45px;
 }
 
-
 /* Horizontal line */
 
 .footer__bottom-line {
@@ -2022,7 +1919,6 @@ margin-bottom: 30px;
 
   background: #3b4044;
 }
-
 
 /* =========================================================
    LEGAL / BOTTOM CONTENT
@@ -2050,7 +1946,6 @@ margin-bottom: 30px;
   text-transform: uppercase;
 }
 
-
 /*
    First item - LEFT
 
@@ -2060,7 +1955,6 @@ margin-bottom: 30px;
 .footer__legal span:nth-child(1) {
   justify-self: start;
 }
-
 
 /*
    Second item is TERMS in your HTML,
@@ -2073,7 +1967,6 @@ margin-bottom: 30px;
   grid-column: 3;
 }
 
-
 /*
    Third item = DESIGNED BY
    Screenshot needs this in CENTER.
@@ -2084,7 +1977,6 @@ margin-bottom: 30px;
 
   grid-column: 2;
 }
-
 
 /* Hide the extra Sense line because
    it is not visible in the Figma screenshot */
